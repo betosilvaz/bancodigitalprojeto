@@ -4,9 +4,6 @@ import entities.*;
 import repositories.AccountRepository;
 import repositories.CustomerRepository;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-
 public class AuthenticatorService {
 
     public static Account registerNewAccount(int type, String email, String name, String cpf, String password) {
@@ -32,5 +29,6 @@ public class AuthenticatorService {
         if(account != null && account.getPassword().equals(password)) return account;
         return null;
     }
+
 
 }

@@ -4,11 +4,11 @@ import utils.RandomNumber;
 
 public abstract class Account {
 
-    private int accountNumber;
-    private int agency;
-    private String password;
-    private double balance;
-    private Customer customer;
+    protected int accountNumber;
+    protected int agency;
+    protected String password;
+    protected double balance;
+    protected Customer customer;
 
     /*
         user when you recover an account that already exists in database

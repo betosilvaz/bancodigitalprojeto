@@ -1,5 +1,7 @@
 import entities.Account;
 import services.AuthenticatorService;
+import services.TransactionService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -30,47 +32,51 @@ public class Main {
 
             if(!authenticated) continue; // happened some error in authentication
 
-            int action = askAction();
-            switch(action) {
-                case 1 -> {
-                    System.out.print("Value: ");
-                    double value = sc.nextDouble();
-                    sc.nextLine();
+            while(true) {
+                int action = askAction();
+                switch(action) {
+                    case 1 -> {
+                        System.out.print("Value: ");
+                        double value = sc.nextDouble();
+                        sc.nextLine();
 
-                    // TODO
+                        TransactionService.draw(account, value);
 
+                    }
+                    case 2 -> {
+                        System.out.println("Value: ");
+                        double value = sc.nextDouble();
+                        sc.nextLine();
+
+                        // TODO
+                        TransactionService.deposit(account, value);
+
+                    }
+                    case 3 -> {
+                        System.out.println("Insert the receivers data..");
+                        System.out.print("Account number: ");
+                        int account_number = sc.nextInt();
+                        System.out.print("Value: ");
+                        double value = sc.nextDouble();
+                        sc.nextLine();
+
+                        // TODO
+                        TransactionService.transfer(account.getAccountNumber(), account_number, value);
+
+                    }
+                    case 4 -> {
+                        System.out.println("===== BANK STATEMENT =====");
+
+                        // TODO
+                        TransactionService.bankStatement(account.getAccountNumber());
+                    }
+                    case 5 -> {
+                        continue begin;
+                    }
                 }
-                case 2 -> {
-                    System.out.println("Value: ");
-                    double value = sc.nextDouble();
-                    sc.nextLine();
-
-                    // TODO
-
-                }
-                case 3 -> {
-                    System.out.println("Insert the receivers data..");
-                    System.out.print("Account number: ");
-                    int account_number = sc.nextInt();
-                    System.out.print("\nValue: ");
-                    double value = sc.nextDouble();
-                    sc.nextLine();
-
-                    // TODO
-
-                }
-                case 4 -> {
-                    System.out.println("===== BANK STATEMENT =====");
-
-                    // TODO
-
-                }
-                case 5 -> {
-                    continue begin;
-                }
+                System.out.print("Type \"continue\" to go foward: ");
+                sc.nextLine();
             }
-            System.out.print("Type \"continue\" to go foward: ");
-            sc.nextLine();
         }
 
         sc.close();
@@ -188,7 +194,7 @@ public class Main {
             System.out.println("3. Transfer");
             System.out.println("4. Bank statement");
             System.out.println("5. Exit");
-            System.out.println("Action: ");
+            System.out.print("Action: ");
             action = sc.nextInt();
             sc.nextLine();
             System.out.println();

@@ -143,4 +143,8 @@ public class AccountRepository {
         return exist;
     }
 
+    public static void save(Account account) {
+
+    }
+
 }
